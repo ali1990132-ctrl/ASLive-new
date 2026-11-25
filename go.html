@@ -1,0 +1,42 @@
+<!doctype html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>A&amp;S Live — التفعيل من الموبايل</title>
+<style>
+*{box-sizing:border-box;font-family:system-ui,Tahoma,sans-serif}
+body{margin:0;min-height:100vh;background:linear-gradient(160deg,#0a1f5c,#06123a 60%,#020a24);color:#fff;display:flex;align-items:center;justify-content:center;padding:18px}
+.c{width:100%;max-width:420px;background:rgba(17,35,85,.85);border:1px solid rgba(34,199,255,.35);border-radius:22px;padding:26px 20px;text-align:center}
+h1{margin:0 0 8px;font-size:24px}p{margin:0 0 18px;color:#9fb3e0;font-size:15px;line-height:1.7}
+a.b{display:block;padding:16px;border-radius:14px;background:linear-gradient(#22c55e,#15803d);color:#fff;font-size:20px;font-weight:bold;text-decoration:none}
+.e{background:#7f1d1d;padding:12px;border-radius:12px}
+</style>
+</head>
+<body>
+<div class="c">
+  <h1>📺 A&amp;S Live</h1>
+  <p id="m">جاري فتح صفحة التفعيل…</p>
+  <a class="b" id="b" href="#" style="display:none">✅ فتح صفحة التفعيل</a>
+</div>
+<script>
+(function () {
+  var h = (location.hash || "").replace(/^#/, "");
+  // only local network addresses (the TV on the same Wi-Fi)
+  var ok = /^(10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|172\.(1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3}):\d{2,5}$/.test(h);
+  var m = document.getElementById("m"), b = document.getElementById("b");
+  if (!ok) {
+    m.className = "e";
+    m.textContent = "الرابط غير صحيح — صوّر الباركود من شاشة التطبيق مرة ثانية.";
+    return;
+  }
+  var url = "http://" + h + "/";
+  b.href = url;
+  b.style.display = "block";
+  m.textContent = "إذا ما انفتحت الصفحة تلقائياً اضغط الزر. لازم الموبايل يكون على نفس الواي فاي مال الشاشة.";
+  setTimeout(function () { location.replace(url); }, 300);
+})();
+</script>
+</body>
+</html>
