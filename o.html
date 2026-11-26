@@ -1,0 +1,50 @@
+<!doctype html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>A&amp;S Live</title>
+<meta property="og:title" content="شاهد على تطبيق A&amp;S Live">
+<style>
+*{box-sizing:border-box;font-family:system-ui,Tahoma,sans-serif}
+body{margin:0;min-height:100vh;background:linear-gradient(160deg,#0a1f5c,#06123a 60%,#020a24);color:#fff;display:flex;align-items:center;justify-content:center;padding:18px}
+.c{width:100%;max-width:420px;background:rgba(17,35,85,.85);border:1px solid rgba(34,199,255,.35);border-radius:22px;padding:26px 20px;text-align:center}
+h1{margin:0 0 6px;font-size:22px;color:#9fb3e0;font-weight:normal}h2{margin:0 0 20px;font-size:26px}
+p{margin:16px 0 0;color:#9fb3e0;font-size:14px;line-height:1.7}
+a.b{display:block;margin-top:12px;padding:16px;border-radius:14px;color:#fff;font-size:20px;font-weight:bold;text-decoration:none}
+.g{background:linear-gradient(#22c55e,#15803d)}.d{background:linear-gradient(#1e5bb8,#123a7a)}
+</style>
+</head>
+<body>
+<div class="c">
+  <h1>📺 A&amp;S Live</h1>
+  <h2 id="n">🎬</h2>
+  <a class="b g" id="open" href="#">▶️ افتح بالتطبيق</a>
+  <a class="b d" href="https://github.com/ali1990132-ctrl/ASLive-new/raw/main/A%26S_Live.apk">📥 تحميل التطبيق</a>
+  <p>إذا التطبيق منزّل عندك اضغط "افتح بالتطبيق"، وإذا ما عندك نزّله أول.</p>
+</div>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var t = q.get("t"), id = q.get("id"), n = q.get("n") || "";
+  document.getElementById("n").textContent = "🎬 " + n;
+  if (n) document.title = n + " — A&S Live";
+  if (!/^[ms]$/.test(t || "") || !/^[\w.-]{1,40}$/.test(id || "")) { document.getElementById("open").style.display = "none"; return; }
+  var data = "open?t=" + t + "&id=" + encodeURIComponent(id);
+  var android = /android/i.test(navigator.userAgent);
+  var link = android
+    ? "intent://" + data + "#Intent;scheme=aslive;package=com.alijamal.aslive2;S.browser_fallback_url=" + encodeURIComponent(location.href.split("#")[0] + "&nf=1") + ";end"
+    : "aslive://" + data;
+  var a = document.getElementById("open");
+  a.href = link;
+  if (q.get("nf")) {
+    document.querySelector("p").textContent = "⚠️ التطبيق مو منزّل على هذا الجهاز — نزّله من الزر الأزرق وبعدين ارجع افتح الرابط.";
+    return;
+  }
+  // try once automatically; the button stays for browsers that need a tap
+  setTimeout(function () { location.href = link; }, 400);
+})();
+</script>
+</body>
+</html>
